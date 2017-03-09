@@ -1,0 +1,22 @@
+  <h1>Grocery List</h1>
+
+    <ul id="grocery-list">
+      <% if !@groceries.nil? %>
+        <% @groceries.each do |item| %>
+          <li class="item">
+            <a href="/groceries/<%= item["id"] %>"><%= item["name"] %></a>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+
+    <fieldset>
+      <legend>Add Item</legend>
+      <form method="post" action="/groceries">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" />
+
+        <input type="submit" value="Submit" />
+      </form>
+    </fieldset>
+    <p><%= @error if @error %></p>

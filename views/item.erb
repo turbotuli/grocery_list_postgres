@@ -1,0 +1,10 @@
+<h1><%= @item.first["name"] %></h1>
+<ul>
+  <% if !@comments.nil? %>
+    <% @comments.each do |comment| %>
+      <li>
+        <%= comment["body"] %></a>
+      </li>
+    <% end %>
+  <% end %>
+</ul>
