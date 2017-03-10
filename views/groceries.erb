@@ -3,8 +3,14 @@
     <ul id="grocery-list">
       <% if !@groceries.nil? %>
         <% @groceries.each do |item| %>
-          <li class="item">
-            <a href="/groceries/<%= item["id"] %>"><%= item["name"] %></a>
+            <li class="item">
+              <a href="/groceries/<%= item["id"] %>"><%= item["name"] %></a>
+              <span class="button">
+                <form method="post" action="/groceries/<%= item["id"] %>">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input id="button" type="submit" value="Delete">
+                  </form>
+              </span>
           </li>
         <% end %>
       <% end %>

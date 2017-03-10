@@ -65,3 +65,11 @@ get '/groceries/:id' do
 
   erb :item
 end
+
+delete '/groceries/:id' do
+  db_connection do |conn|
+    conn.exec_params("DELETE FROM groceries WHERE id = ($1)", [params["id"]])
+  end
+
+  redirect '/groceries'
+end
