@@ -38,6 +38,11 @@ post "/groceries" do
   if params["name"] == ""
     @error = "You must specify an item."
 
+    db_connection do |conn|
+      groceries = conn.exec("SELECT groceries.name, groceries.id FROM groceries")
+      @groceries = groceries.to_a
+    end
+
     erb :groceries
   else
     db_connection do |conn|
