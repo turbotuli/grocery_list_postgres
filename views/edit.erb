@@ -1,0 +1,7 @@
+
+<form method="post" action="/groceries/<%= @item.first["id"] %>">
+  <label for="item">Item:</label>
+  <input type="text" id="item" name="item" value="<%= @item.first["name"] %>" autofocus>
+  <input type="hidden" name="_method" value="PATCH">
+  <input id="button" type="submit" value="Update">
+  </form>

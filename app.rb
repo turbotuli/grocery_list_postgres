@@ -73,3 +73,25 @@ delete '/groceries/:id' do
 
   redirect '/groceries'
 end
+
+get '/groceries/:id/edit' do
+  db_connection do |conn|
+    item = conn.exec_params("SELECT groceries.name, groceries.id FROM groceries WHERE groceries.id = ($1)",
+      [params["id"]])
+    @item = item.to_a
+  end
+
+  erb :edit
+end
+
+patch '/groceries/:id' do
+  if params["item"] == ""
+    redirect back
+  else
+    db_connection do |conn|
+      conn.exec_params("UPDATE groceries SET name = ($1) WHERE id = ($2)", [params["item"],params["id"]])
+    end
+
+    redirect '/groceries'
+  end
+end

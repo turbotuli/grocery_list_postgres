@@ -5,12 +5,14 @@
         <% @groceries.each do |item| %>
             <li class="item">
               <a href="/groceries/<%= item["id"] %>"><%= item["name"] %></a>
-              <span class="button">
                 <form method="post" action="/groceries/<%= item["id"] %>">
                   <input type="hidden" name="_method" value="DELETE">
                   <input id="button" type="submit" value="Delete">
                   </form>
-              </span>
+                  <form method="post" action="/groceries/<%= item["id"] %>/edit">
+                    <input type="hidden" name="_method" value="GET">
+                    <input id="button" type="submit" value="Update">
+                    </form>
           </li>
         <% end %>
       <% end %>
@@ -20,7 +22,7 @@
       <legend>Add Item</legend>
       <form method="post" action="/groceries">
         <label for="name">Name</label>
-        <input type="text" name="name" id="name" />
+        <input type="text" name="name" id="name" autofocus />
 
         <input type="submit" value="Submit" />
       </form>
